@@ -1,0 +1,78 @@
+$icomoon-font-path: "fonts" !default;
+
+$icon-up-arrow: "\e900";
+$icon-logout: "\e901";
+$icon-linkedin: "\e902";
+$icon-github: "\e903";
+$icon-facebook: "\e904";
+$icon-download: "\e905";
+$icon-codepen: "\e906";
+$icon-cancel: "\e907";
+
+@font-face {
+  font-family: 'iconAlex';
+  src:  url('../fonts/iconAlex.eot?jabvul');
+  src:  url('../fonts/iconAlex.eot?jabvul#iefix') format('embedded-opentype'),
+    url('../fonts/iconAlex.ttf?jabvul') format('truetype'),
+    url('../fonts/iconAlex.woff?jabvul') format('woff'),
+    url('../fonts/iconAlex.svg?jabvul#iconAlex') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconAlex' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-up-arrow {
+  &:before {
+    content: $icon-up-arrow;
+  }
+}
+.icon-logout {
+  &:before {
+    content: $icon-logout;
+  }
+}
+.icon-linkedin {
+  &:before {
+    content: $icon-linkedin;
+  }
+}
+.icon-github {
+  &:before {
+    content: $icon-github;
+  }
+}
+.icon-facebook {
+  &:before {
+    content: $icon-facebook;
+  }
+}
+.icon-download {
+  &:before {
+    content: $icon-download;
+  }
+}
+.icon-codepen {
+  &:before {
+    content: $icon-codepen;
+  }
+}
+.icon-cancel {
+  &:before {
+    content: $icon-cancel;
+  }
+}
+

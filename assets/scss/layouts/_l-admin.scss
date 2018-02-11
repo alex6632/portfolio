@@ -1,0 +1,183 @@
+// _l-admin.scss
+
+.admin {
+  width: 1100px;
+  margin: 100px auto 50px auto;
+
+  h1 {
+    font-family: font('secondary');
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: font('secondary');
+    font-size: 22px;
+    font-weight: 500;
+    color: color('primary');
+    text-transform: none;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .add-form {
+    width: 100%;
+
+    form {
+      max-width: 500px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+    div {
+      overflow: hidden;
+      margin: 4px 0;
+    }
+    label, input {
+      float: left;
+    }
+    label {
+      width: 100px;
+    }
+    input, textarea {
+      width: calc(100% - 100px);
+    }
+    textarea {
+      height: 200px;
+    }
+    button {
+      height: 20px;
+      width: 150px;
+      float: right;
+      background-color: #99cdd8;
+      margin-top: 10px;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.error {
+  font-weight: 700;
+  color: color('foreground', 'invert');
+  background-color: red;
+  padding: 2px 6px;
+}
+
+// LOG IN FORM
+.login-form {
+  @include center-h-v(absolute);
+  border-left: solid 4px color('primary');
+  border-right: solid 4px color('primary');
+  border-bottom: solid 4px color('primary');
+  padding: 0 0 30px 0;
+
+  .title {
+    background-color: color('primary');
+    color: color('foreground', 'invert');
+    padding: 15px;
+    margin-bottom: 30px;
+    width: 102%;
+    margin-left: -1%;
+  }
+
+  .error {
+    width: 80%;
+    margin: 0 auto 20px auto
+  }
+
+  .block-input {
+    margin: 6px 0 6px 30px;
+    overflow: hidden;
+
+    label {
+      width: 100px;
+    }
+
+    label, input {
+      float: left;
+    }
+
+    button {
+      width: 100px;
+      height: 20px;
+      margin-top: 20px;
+    }
+  }
+
+
+}
+
+// TOOLBAR IF ADMIN USER IS LOG IN
+.admin-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 4px 0;
+  background-color: #99cdd8;
+  z-index: 99999999;
+  @include transition();
+
+  .admin-header & {
+    background-color: color('background', 'invert');
+  }
+
+  &.close {
+    max-width: 100px;
+    overflow: hidden;
+    @include transition();
+
+    .admin-toolbar {
+      &__list {
+        &__item {
+          &__link {
+            display: none;
+            &.left {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__list {
+    text-align: center;
+
+    &__item {
+      list-style: none;
+      display: inline-block;
+
+      &__link {
+        display: block;
+        margin: 0 10px;
+        color: color('foreground');
+        font-size: 11px;
+
+        .admin-header & {
+          color: color('foreground', 'invert');
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &.right, &.left {
+          position: absolute;
+          top: 4px;
+          font-weight: 700;
+        }
+        &.right {
+          right: 10px;
+        }
+        &.left {
+          left: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

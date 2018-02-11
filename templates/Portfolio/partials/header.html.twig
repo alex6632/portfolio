@@ -1,0 +1,25 @@
+{% block header %}
+    <header class="main-header{% if actualRoute == 'accueil' %} home{% endif %}">
+        <div class="main-header__inner">
+            <a href="/" class="logo-desk">{% include 'Portfolio/partials/anim.html' %}</a>
+            <a href="{{ path('formation') }}" class='link-desk{% if actualRoute == 'formation' %} active{% endif %}' >Mon parcours professionnel</a>
+            <a href="{{ path('projets') }}" class='link-desk{% if actualRoute == 'projets' %} active{% endif %}' >Mes projets</a>
+            <a href="{{ path('contact') }}" class='link-desk{% if actualRoute == 'contact' %} active{% endif %}' >Ne me perdez pas de vue !</a>
+            <a href="{{ asset('build/images/CV_2018_2.pdf') }}" target="_blank" class="cv-mobile">Mon CV</a>
+
+            <div class="burger center-v" id="jsOpenMenu">
+                <div class="line"></div>
+                <div class="line line--middle"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-mobile">
+        <div class="close-menu icon-cancel" id="jsCloseMenu"></div>
+            <a href="{{ path('formation') }}" class='' >Mon parcours professionnel</a>
+            <a href="{{ path('projets') }}" class='' >Mes projets</a>
+            <a href="{{ path('contact') }}" class='' >Ne me perdez pas de vue !</a>
+        </ul>
+    </div>
+{% endblock %}

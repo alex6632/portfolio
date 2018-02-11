@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    {% set actualRoute = app.request.attributes.get('_route') %}
+
+    <div class="overlay"></div>
+    <div id="top"></div>
+
+    {% block _header %}
+        {{ include('Portfolio/partials/header.html.twig') }}
+    {% endblock %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="admin-toolbar trigger">
+            <ul class="admin-toolbar__list">
+                <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link left"
+                                                         id="jsToogleAdminToolbar">[FERMER]</a></li>
+                <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link right"
+                                                         href="/logout">Deconnexion</a></li>
+                <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
+                                                         href="/dashboard">Dashoard</a></li>
+                <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
+                                                         href="/dashboard">Ajouter une formation</a></li>
+                <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
+                                                         href="/dashboard">Ajouter un projet</a></li>
+                <li class="admin-toolbar__list__item"><span
+                            class="admin-toolbar__list__item__link">Route actuelle : {{ actualRoute }}</span></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="main" {% if actualRoute =='formation' %}id="formation"{% endif %}>
+        {% block _container %}
+            {% block _page_content %}{% endblock %}
+        {% endblock %}
+    </div>
+
+    {% block _footer %}
+        {{ include('Portfolio/partials/footer.html.twig') }}
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'Portfolio/base.html.twig' %}
+
+{% block _page_content %}
+    {% set i = 0 %}
+    {% for formation in FormationList %}
+        <section class="section section--sm section--rel section--shadow section--z7" id="{{ formation.identifiant }}">
+            <div class="section__inner-full">
+                <div class="bloc-left bloc-left--full" style="background: url('{{ asset('uploads/formation/' ~ formation.image) }}') no-repeat center; background-size: cover;"></div>
+                <div class="bloc-right {% if i % 2 == 0 %}bloc-right--up-r{% else %}bloc-right--up{% endif %}">
+                    <div class="bloc-right__date bloc-right__date">{{ formation.date }}</div>
+                    <div class="bloc-right__formation bloc-right__formation">{{ formation.name }}</div>
+                    <div class="bloc-right__lieu">{{ formation.location }}</div>
+                </div>
+            </div>
+        </section>
+        {% set i = i + 1 %}
+    {% endfor %}
+{% endblock %}

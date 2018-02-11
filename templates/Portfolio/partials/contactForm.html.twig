@@ -1,0 +1,31 @@
+<div class="block-alert">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert--success" role="alert">
+            {#<div class="close">X Fermer</div>#}
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert--error" role="alert">
+            {#<div class="close">X Fermer</div>#}
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+</div>
+
+{{ form_start(ContactForm) }}
+<div class="form__left">
+    {{ form_widget(ContactForm.lastName, {attr: {class: 'form__left__input'} }) }}
+    {{ form_errors(ContactForm.lastName) }}
+    {{ form_widget(ContactForm.firstName, {attr: {class: 'form__left__input'} }) }}
+    {{ form_errors(ContactForm.firstName) }}
+    {{ form_widget(ContactForm.email, {attr: {class: 'form__left__input'} }) }}
+    {{ form_errors(ContactForm.email) }}
+</div>
+<div class="form__right">
+    {{ form_widget(ContactForm.message, {attr: {class: 'form__right__textarea'} }) }}
+    {{ form_errors(ContactForm.message) }}
+</div>
+{{ form_widget(ContactForm.submit, {attr: {class: 'btn'} }) }}
+
+{{ form_end(ContactForm) }}

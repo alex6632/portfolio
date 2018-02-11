@@ -1,0 +1,39 @@
+// _c-tags.scss
+
+.tags {
+  text-align: center;
+  width: 100%;
+  color: color('primary');
+  font-weight: 700;
+
+  .projects & {
+    text-align: right;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  &__item {
+    display: inline-block;
+
+    .projects & {
+      opacity: 0;
+      transform: translateX(50%);
+      transition: all 200ms ease-in-out;
+      @include transition();
+    }
+    .projects__list__item:hover &,
+    .projects__list__item.active & {
+      opacity: 1;
+      transform: translateX(0);
+      @include transition();
+
+      @for $i from 0 through 20 {
+        &:nth-child(#{$i}) {
+          transition-delay: 0.07s * $i;
+        }
+      }
+    }
+
+  }
+}

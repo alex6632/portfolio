@@ -1,0 +1,114 @@
+{% extends 'Portfolio/base.html.twig' %}
+
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
+{#{% endblock %}#}
+
+{% block _page_content %}
+<div class="puces">
+    <a href="#1" class="puces__item scrollTo active" id="jsInte"></a>
+    <a href="#2" class="puces__item scrollTo" id="jsInfo"></a>
+    <a href="#3" class="puces__item scrollTo" id="jsSport"></a>
+</div>
+<div class="indic">
+    Clique sur les puces pour voir la suite ou scroll simplement vers le bas !
+</div>
+
+<section class="section section--1" data-section-name="home" id="1">
+    <div class="section__inner">
+        <div class="section__inner__legende section__inner__legende--inte">
+            <div class="
+              section__inner__legende__title">
+                Je suis
+            </div>
+            <div class="
+              section__inner__legende__desc">
+                un développeur web
+            </div>
+            <a href="?p=projets" class="
+                              link
+                              link--after-left">
+                Découvrir Insight Lab
+            </a>
+        </div>
+        <div class="section__inner__maquettes">
+            <picture>
+                <source media="(min-width: 750)" srcset="{{ asset('build/images/accueil/mockup-section-1/analyse-liste.jpg') }}">
+                <img src="{{ asset('build/images/accueil/mockup-section-1/analyse-liste.jpg') }}" alt="" class="section__inner__maquettes--1"/>
+            </picture>
+            <picture>
+                <source media="(min-width: 750)" srcset="{{ asset('build/images/accueil/mockup-section-1/analyse-resultat.jpg') }}">
+                <img src="{{ asset('build/images/accueil/mockup-section-1/analyse-resultat.jpg') }}" alt="" class="section__inner__maquettes--2"/>
+            </picture>
+            <picture>
+                <source media="(min-width: 750)" srcset="{{ asset('build/images/accueil/mockup-section-1/publication.jpg') }}">
+                <img src="{{ asset('build/images/accueil/mockup-section-1/publication.jpg') }}" alt="" class="section__inner__maquettes--3"/>
+            </picture>
+        </div>
+        <img src="{{ asset('build/images/accueil/mockup-intro-1.png') }}" alt="" class="section__inner__img section__inner__img--1"/>
+    </div>
+</section>
+
+<section class="section section--2" data-section-name="home" id="2">
+    <div class="section__inner">
+        <div class="
+    section__inner__legende
+    section__inner__legende--info
+    section__inner__legende--left">
+            <div class="
+      section__inner__legende__title
+      section__inner__legende__title--right">
+                Passionné
+            </div>
+            <div class="
+      section__inner__legende__desc
+      section__inner__legende__desc--right
+      section__inner__legende__desc--invert">
+                de back et de front
+            </div>
+            <a href="http://www.alexandre-simonin.fr/francetv360" target="_blank" class="
+      link
+      link--right
+      link--after-right">
+                Découvrir France.TV360
+            </a>
+        </div>
+        <picture>
+            <source media="(min-width: 750)" srcset="{{ asset('build/images/accueil/mockup-francetv-desktop.png') }}">
+            <img src="{{ asset('build/images/accueil/mockup-francetv-mobile.png') }}" alt="" class="section__inner__img
+            section__inner__img--3"/>
+        </picture>
+    </div>
+</section>
+
+<section class="section section--bg" data-section-name="home" id="3">
+    <div class="img">
+        <div class="
+            section__inner
+            section__inner--bg">
+            <div class="
+                section__inner__legende
+                section__inner__legende--bg
+                track">
+                <div class="
+                    section__inner__legende__title
+                    section__inner__legende__title--right">
+                    Et enfin
+                </div>
+                <div class="
+                    section__inner__legende__desc
+                    section__inner__legende__desc--right">
+                    un sportif avec l’esprit de compétition
+                </div>
+                <a href="http://jsi-natation.fr" class="
+                                    link
+                                    link--right
+                                    link--after-right" target="_blank">
+                    Voir le site du club
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

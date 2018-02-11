@@ -1,0 +1,88 @@
+/*
+	All typography styles here...
+	|
+	|__ typography.scss
+*/
+
+.link {
+	position: relative;
+	text-decoration: none;
+	color: color('primary');
+
+	&--after-right {
+
+		&:after {
+			position: absolute;
+			display: block;
+			right: 0;
+			content: "";
+			width: 50px;
+			height: 1px;
+			margin: 15px 0;
+			background-color: color('primary');
+		}
+	}
+
+	&--after-left {
+
+		&:after {
+			display: block;
+			content: "";
+			width: 50px;
+			height: 1px;
+			margin: 15px 0;
+			background-color: color('primary');
+		}
+	}
+
+	&--left {
+		display: block;
+		margin: 10px 0;
+	}
+
+	&--right {
+		display: block;
+		text-align: right;
+		margin: 10px 0;
+	}
+}
+
+.h1 {
+	position: relative;
+	display: block;
+	margin: auto;
+	width: 600px;
+	text-align: center;
+	font-size: 50px;
+	font-weight: 100;
+	color: color('gray','light');
+	background-color: color('background');;
+	z-index: 999;
+
+	span {
+		font-size: 50px;
+		text-transform: uppercase;
+		color: color('primary');
+	}
+}
+
+.h2 {
+	font-size: 50px;
+	font-weight: 100;
+	color: color('gray','light');
+	text-transform: uppercase;
+}
+
+@media screen and (max-width: 615px) {
+
+    .h1 {
+		position: absolute;
+		width: 100%;
+		font-size: 38px;
+		background-color: rgba(color('background'),.8);
+
+		span {
+			font-size: 38px;
+		}
+    }
+}

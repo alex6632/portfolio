@@ -1,0 +1,65 @@
+// m_-modal.scss
+
+.modal {
+  position: fixed;
+  left: 0; top: 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  background-color: color('background', 'light');
+  @include transition();
+
+  @include respond-to('large') {
+    left: 50%; margin-left: -300px;
+    width: 600px;
+  }
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+    @include transition();
+    z-index: 999999;
+
+    @include respond-to('large') {
+      transform: translateY(100px);
+    }
+  }
+
+  h2 {
+    background: color('gray', 'light');
+    color: color('foreground', 'invert');
+    font-weight: 300;
+    border-bottom: solid 2px color('primary');
+    padding: 15px 30px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .choice {
+    overflow: hidden;
+    padding: 30px;
+
+    a {
+      width: 40%;
+      text-align: center;
+
+      &:first-child {
+        float: left;
+      }
+      &:last-child {
+        float: right;
+      }
+      &:hover {
+        color: color('gray', 'light');
+        background-color: color(primary);
+        @include transition();
+      }
+    }
+  }
+
+  .cancel {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+  }
+}

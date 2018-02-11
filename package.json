@@ -1,0 +1,27 @@
+{
+  "name": "portfolioAlexandreSimonin",
+  "version": "3.0.0",
+  "description": "Mon portfolio 2018",
+  "main": "Gulpfile.js",
+  "private": true,
+  "scripts": {
+    "watch": "./node_modules/.bin/gulp watch",
+    "dev": "./node_modules/.bin/gulp dist --type=development",
+    "build": "./node_modules/.bin/gulp dist --type=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alex6632/"
+  },
+  "author": "Alexandre Simonin",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-sourcemaps": "^2.5.1"
+  }
+}

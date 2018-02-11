@@ -1,0 +1,24 @@
+{% extends 'Portfolio/base.html.twig' %}
+
+{% block _page_content %}
+    <nav class="projects">
+        <ul class="projects__list">
+            {% set i = 0 %}
+            {% for project in ProjectList %}
+                <li class="projects__list__item" data-order="projet{{ i }}">
+                    <div class="projects__list__item__img-block">
+                        <img src="{{ asset('uploads/projet/' ~ project.image) }}" alt="" class="projects__img">
+                    </div>
+                    <div href="" class="projects__title">{{ project.name }}</div>
+                    <ul class="tags">
+                        {% for tag in project.tags %}
+                            <li class="tags__item">_{{ tag.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {{ include('Portfolio/partials/projet.html.twig') }}
+                {% set i = i + 1 %}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}

@@ -1,0 +1,50 @@
+input.parsley-error,
+select.parsley-error {
+  border: 2px solid #B80000;
+  background: url('../img/echec.png') no-repeat 95% 9px;
+}
+
+textarea.parsley-error {
+  border: 2px solid #B80000;
+  background: url('../img/echec.png') no-repeat 95% 95%;
+}
+
+input.parsley-error:after,
+select.parsley-error:after,
+textarea.parsley-error:after {
+    display: block;
+    content: "";
+    background: url('../img/echec.png') no-repeat;
+    width: 17px; height: 17px;
+}
+
+.parsley-errors-list {
+  margin: 2px 0 3px;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.9em;
+  line-height: 0.9em;
+  opacity: 0;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+}
+
+.parsley-required,
+.parsley-type,
+.parsley-minlength,
+.parsley-maxlength,
+.error {
+    position: absolute;
+    display: block;
+    content: "";
+    background: url('../img/echec.png') no-repeat;
+    width: 17px; height: 17px;
+    margin: -42px 0 0 165px;
+}

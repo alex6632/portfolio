@@ -1,0 +1,367 @@
+// _l-header.scss
+
+.main-header {
+  position: fixed;
+  width: 100%;
+  height: $height;
+  background-color: color('gray', 'light');
+  border-bottom: solid 2px color('primary');
+  z-index: 1025;
+  //transition: background-color $time $ease 0.5s, height $time $ease 1s;
+  @include transition();
+
+  @include respond-to('large') {
+    height: 110px;
+    background-color: color('background');
+    border-bottom: 0;
+    //transition: background-color $time $ease 0.5s, height $time $ease 1s;
+    @include transition();
+
+    &.dimin {
+      height: $height;
+      background-color: color('gray', 'light');
+      border-bottom: solid 2px color('primary');
+      z-index: 1025;
+      @include transition();
+    }
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: $height;
+    margin: auto;
+
+
+    @include respond-to('large') {
+      width: 1000px;
+      height: 110px;
+      text-align: center;
+
+      &.dimin {
+        height: $height;
+        @include transition();
+      }
+    }
+    @include respond-to('desktop') {
+      width: 1200px;
+    }
+
+    a {
+      display: inline-block;
+      vertical-align: top;
+      line-height: $height;
+      color: color('foreground', 'invert');
+      font-size: 12px;
+      margin: 0 10px;
+      font-weight: 100;
+      @include transition();
+      //transition: line-height $time $ease 1s, color $time $ease 0.5s, font-size $time $ease 1s;
+
+      @include respond-to('large') {
+        line-height: 110px;
+        color: color('gray', 'light');
+        font-size: 15px;
+        margin: 0 20px;
+
+        &.dimin {
+          line-height: $height;
+          color: color('foreground', 'invert');
+          font-size: 12px;
+          margin: 0 10px;
+          @include transition();
+        }
+      }
+
+      // logo
+      &.logo-desk {
+        width: 38px;
+        height: 40px;
+        background: url('../images/logo-sprite.png') no-repeat -194px 0;
+        margin: 5px 20px;
+        transition: 0s all ease;
+
+        @include respond-to('large') {
+          width: 97px;
+          height: 100px;
+          background: url('../images/logo-sprite.png') no-repeat 0 0;
+          transition: 0s all ease;
+
+          .home & {
+            background: none;
+          }
+
+          &.dimin {
+            width: 38px;
+            height: 40px;
+            background: url('../images/logo-sprite.png') no-repeat -194px 0;
+            margin: 5px 20px;
+            transition: 0s all ease;
+          }
+        }
+
+        svg {
+          display: none;
+
+          &.hide {
+            display: none;
+          }
+
+          @include respond-to('large') {
+            .home & {
+              display: inline-block;
+              width: 110px;
+              height: 110px;
+
+              &.hide {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      // Other links
+      &.link-desk {
+        display: none;
+
+        @include respond-to('large') {
+          display: inline-block;
+        }
+      }
+
+      // Link active
+      &.active {
+        color: color('primary');
+      }
+
+      &:hover {
+        color: color('primary');
+        @include transition();
+      }
+    } // </a>
+
+    .burger {
+      right: 25px;
+      width: 20px;
+      height: 16px;
+      cursor: pointer;
+      @include transition();
+
+      @include respond-to('large') {
+        display: none;
+      }
+
+      .line {
+        width: 100%;
+        height: 1px;
+        background-color: color('background');
+        @include transition();
+
+        &--middle {
+          margin: 6px 0;
+        }
+      }
+    }
+
+    .anim-mobile {
+      display: none;
+      color: color('background');
+      line-height: $height;
+      margin-left: 0;
+    }
+  }
+}
+
+.header-mobile {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: color('gray', 'light');
+  padding-top: 90px;
+  z-index: 999999;
+  transform: translateX(100%);
+  transition: all 0.3s 0.5s ease-in-out;
+
+  &.open {
+    transform: translateX(0);
+    @include transition();
+
+    a {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.3s ease-in-out;
+      //@include transition();
+
+      @for $i from 0 through 20 {
+        &:nth-child(#{$i}) {
+          transition-delay: 0.07s * $i;
+        }
+      }
+    }
+  }
+
+  .close-menu {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 25px;
+    right: 25px;
+    color: color('foreground', 'invert');
+    font-size: 30px;
+    cursor: pointer;
+    @include transition();
+
+    &.show {
+      right: 25px;
+      opacity: 1;
+      @include transition();
+    }
+  }
+
+  a {
+    display: block;
+    width: 80%;
+    margin: auto;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: solid 1px color('gray', 'dark');
+    color: color('background');
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3em;
+    opacity: 0;
+    transform: translateY(-50%);
+    //@include transition();
+    transition: all 0.3s ease-in-out;
+
+    @for $i from 0 through 20 {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.07s * $i;
+      }
+    }
+  }
+}
+
+/*
+@media screen and (max-width: 1024px) {
+
+    .main-header {
+        height: $height;
+        background-color: color('gray','light');
+        border-bottom: solid 2px color('primary');
+
+        &__inner {
+            width: 100%;
+            height: $height;
+
+            .logo-mobile {
+                display: inline-block;
+                width: 90px; height: 50px;
+            }
+
+            .logo-desk {
+                display: none;
+            }
+
+            .logo {
+                left: 50px;
+
+                &--1 {
+                    opacity: 0;
+                    transition: opacity $time $ease 0.5s;
+                }
+
+                &--2 {
+                    &.hide {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .nav {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 120px;
+
+                a {
+                    line-height: $height;
+                    color: color('background');
+                    font-size: 12px;
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 850px) {
+
+    .main-header {
+        &__inner {
+            .nav {
+                margin-left: 30px;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 750px) {
+
+    .main-header {
+        &__inner {
+            .logo {
+                left: 25px;
+            }
+            .nav {
+                margin-left: 0;
+
+                a {
+                    margin: 0 8px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 680px) {
+
+    .main-header {
+        &__inner {
+            .logo {
+                left: 25px;
+            }
+            .nav {
+                display: none;
+            }
+            .burger {
+                display: block;
+            }
+            .anim-mobile {
+                display: inline-block;
+                vertical-align: top;
+                width: 90px;
+            }
+            .cv-mobile {
+                display: inline-block;
+                vertical-align: top;
+                width: 60px;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 340px) {
+
+    .header-mobile {
+        a {
+            font-size: 1.2em;
+        }
+    }
+}
+*/

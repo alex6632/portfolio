@@ -1,0 +1,58 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block _header %}
+    {{ include('Admin/partials/header.html.twig') }}
+{% endblock %}
+
+{% block _page_content %}
+
+    <h1>Gestion des projets</h1>
+
+    <section class="section">
+        <div class="add-form">
+            <h2>Ajouter une formation</h2>
+            {{ form_start(FormationAdd) }}
+            {{ form_end(FormationAdd) }}
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Liste des formations existantes</h2>
+        {% if FormationList %}
+            <table>
+                <thead>
+                <tr>
+                    <th>Apercu image</th>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Nom</th>
+                    <th>Lieu</th>
+                    <th>Priorité</th>
+                    <th class="action">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for formation in FormationList %}
+                    <tr>
+                        <td><img src="{{ asset('uploads/formation/' ~ formation.image) }}" alt=""></td>
+                        <td>{{ formation.identifiant }}</td>
+                        <td>{{ formation.date }}</td>
+                        <td>{{ formation.name }}</td>
+                        <td>{{ formation.location }}</td>
+                        <td>{{ formation.priority }}</td>
+                        <td>
+                            <a href="{{ path('formation_delete', { 'id' : formation.id } ) }}">Supprimer</a>
+                            <a href="{{ path('formation_edit', { 'id' : formation.id } )}}">Editer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            Aucune formation pour le moment
+        {% endif %}
+    </section>
+
+
+
+{% endblock %}

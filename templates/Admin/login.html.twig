@@ -1,0 +1,29 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block _page_content %}
+
+    <form action="{{ path('login') }}" method="post" class="login-form">
+
+        <div class="title">Vous devez être connecté pour accéder à cette zone</div>
+
+        {% if error %}
+            <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <div class="block-input">
+            <label for="username">Identifiant:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+        <div class="block-input">
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+
+        {# On succes, redirect to dashboard #}
+        <input type="hidden" name="_target_path" value="/admin/dashboard" />
+
+        <div class="block-input">
+            <button type="submit">Connexion</button>
+        </div>
+    </form>
+{% endblock %}

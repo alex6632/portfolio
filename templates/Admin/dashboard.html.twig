@@ -1,0 +1,153 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block _header %}
+    {{ include('Admin/partials/header.html.twig') }}
+{% endblock %}
+
+{% block _page_content %}
+
+    <h1>Dashboard</h1>
+
+    <h2>Liste des formations</h2>
+    {% if FormationList %}
+        <table>
+            <thead>
+            <tr>
+                <th>Apercu image</th>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Nom</th>
+                <th>Lieu</th>
+                <th>Priorité</th>
+                <th class="action">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for formation in FormationList %}
+                <tr>
+                    <td><img src="{{ asset('uploads/formation/' ~ formation.image) }}" alt=""></td>
+                    <td>{{ formation.identifiant }}</td>
+                    <td>{{ formation.date }}</td>
+                    <td>{{ formation.name }}</td>
+                    <td>{{ formation.location }}</td>
+                    <td>{{ formation.priority }}</td>
+                    <td>
+                        <a href="{{ path('formation_delete', { 'id' : formation.id } ) }}">Supprimer</a>
+                        <a href="{{ path('formation_edit', { 'id' : formation.id } )}}">Editer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Aucune formation pour le moment
+    {% endif %}
+
+    <hr>
+
+    <h2>Liste des projets</h2>
+    {% if ProjectsList %}
+        <table>
+            <thead>
+            <tr>
+                <th>Apercu image</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>URL</th>
+                <th>Tags</th>
+                <th>Priorité</th>
+                <th class="action">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for project in ProjectsList %}
+                <tr>
+                    <td><img src="{{ asset('uploads/projet/' ~ project.image) }}" alt=""></td>
+                    <td>{{ project.name }}</td>
+                    <td class="description">{{ project.description }}</td>
+                    <td class="url"><a href="{{ project.url }}" target="_blank">{{ project.url }}</a></td>
+                    <td>
+                        {% for tag in project.tags %}
+                            {{ tag.name }},
+                        {% endfor %}
+                    </td>
+                    <td>{{ project.priority }}</td>
+                    <td>
+                        <a href="{{ path('project_delete', { 'id' : project.id } ) }}">Supprimer</a>
+                        <a href="{{ path('project_edit', { 'id' : project.id } )}}">Editer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Aucun projet pour le moment
+    {% endif %}
+
+    <hr>
+
+    <h2>Liste des tags</h2>
+    {% if TagsList %}
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th class="action">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tag in TagsList %}
+                <tr>
+                    <td>{{ tag.name }}</td>
+                    <td>
+                        <a href="{{ path('tag_delete', { 'id' : tag.id } )}}">Supprimer</a>
+                        <a href="{{ path('tag_edit', { 'id' : tag.id } )}}">Editer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Aucun tag pour le moment
+    {% endif %}
+
+    <hr>
+
+    <h2>Liens utiles</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>URL</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Github</td>
+                <td class="url"><a href="https://github.com/alex6632" target="_blank">https://github.com/alex6632</a></td>
+            </tr>
+            <tr>
+                <td>Send a mail</td>
+                <td class="url"><a href="https://symfony.com/doc/current/email.html" target="_blank">https://symfony.com/doc/current/email.html</a></td>
+            </tr>
+            <tr>
+                <td>Twig</td>
+                <td class="url"><a href="https://twig.symfony.com/" target="_blank">https://twig.symfony.com/</a></td>
+            </tr>
+            <tr>
+                <td>Doctrine</td>
+                <td class="url"><a href="http://doctrine-orm.readthedocs.io/en/latest/">Doctrine</a></td>
+            </tr>
+            <tr>
+                <td>Doctrine</td>
+                <td class="url"><a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/query-builder.html">Query builder</a></td>
+            </tr>
+            <tr>
+                <td>Doctrine</td>
+                <td class="url"><a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/dql-doctrine-query-language.html">DQL</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+// _fonts.scss
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OS-light.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OS-italic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OS-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../fonts/OS-regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+//***************************************
+
+@font-face {
+  font-family: "Alegreya";
+  src: url("../fonts/AlegreyaSansSC-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alegreya";
+  src: url("../fonts/AlegreyaSansSC-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alegreya";
+  src: url("../fonts/AlegreyaSansSC-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alegreya";
+  src: url("../fonts/AlegreyaSansSC-MediumItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}

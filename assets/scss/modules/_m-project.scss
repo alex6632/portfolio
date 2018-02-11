@@ -1,0 +1,113 @@
+// _m-project.scss
+
+.project {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 90%;
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: rgba(color('background'),.9);
+  box-shadow: -2px 0px 35px 0px rgba(205,205,205,1);
+  transform: translateX(110%);
+  z-index: 9999999;
+  @include transition();
+
+  @include respond-to('medium') {
+    width: 60%;
+    padding: 20px;
+  }
+  @include respond-to('large') {
+    width: 450px;
+    padding: 30px;
+  }
+
+  &.open {
+    transform: translateX(0);
+    @include transition();
+  }
+
+  &__desc {
+    font-size: 20px;
+    line-height: 38px;
+
+    @include respond-to('large') {
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    font-size: 20px;
+    color: color('primary');
+    margin-top: 30px;
+
+    @include respond-to('large') {
+      font-size: 18px;
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      width: 15px;
+      height: 2px;
+      background-color: color('primary');
+      margin: 8px 0;
+      @include transition();
+    }
+
+    @include respond-to('large') {
+      &:hover {
+        &::after {
+          width: 100%;
+          @include transition();
+        }
+      }
+    }
+  }
+}
+
+.cancel {
+  display: inline-block;
+  font-size: 16px;
+  border: 1px solid color('background', 'invert');
+  padding: 2px 6px;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  .icon-cancel {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    @include transition();
+  }
+
+  @include respond-to('large') {
+    &:hover {
+      background-color: color('background', 'invert');
+      color: color('foreground', 'invert');
+      @include transition();
+
+      .icon-cancel {
+        color: color('foreground', 'invert');
+      }
+    }
+  }
+
+  &--invert {
+    border: 1px solid color('background');
+    color: color('foreground', 'invert');
+
+    &:hover {
+      border: 1px solid color('background');
+      color: color('foreground');
+      background-color: color('background');
+
+      .icon-cancel {
+        color: color('foreground');
+      }
+    }
+  }
+}

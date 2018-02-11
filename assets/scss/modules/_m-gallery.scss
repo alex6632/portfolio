@@ -1,0 +1,360 @@
+/*
+	All PROJETS styles here...
+	|
+	|__ gallery.scss
+*/
+
+.gallery {
+    position: absolute; /* avant : relative */
+    width: 100%; height: calc(100% - 110px);
+    /*min-height: 500px;*/
+    top: 110px;
+
+    &__mosa {
+        position: fixed;
+        /*position: absolute;*/
+        /*top: 0; left: 0;*/
+        width: 50%; height: 100%;
+        /*overflow: hidden;*/
+        z-index: 10;
+        float: left;
+        overflow: hidden;
+
+        &__inner {
+            width: 100%; /*height: calc(100% - 110px);*/
+
+            &__item {
+                position: relative;
+                /*display: inline-block;*/
+                width: 50%; height: 33.333333%;
+                overflow: hidden;
+                float: left;
+                /*margin: -3px 0 0 0;*/
+                cursor: pointer;
+
+                .hide {
+                    display: none;
+                }
+
+                &--middle {
+                    /*height: 35%;*/
+                }
+
+                &--mg-left {
+                    /*margin-left: -4px;*/
+                }
+
+                &--dark {
+                    background-color: color('gray','light');
+                }
+
+                &--light {
+                    background-color: color('background');
+                }
+            }
+        }
+    }
+
+    &__visu {
+        position: absolute;
+        top: 0; left: 50%;
+        width: 50%; height: 100%;
+        z-index: 5;
+
+        .close-big {
+            position: absolute;
+            display: none;
+            top: 25px;
+            right: 25px;
+            width: 60px;
+            background-color: color('primary');
+            padding: 15px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        &__info {
+            position: relative;
+            width: 100%; height: 100%;
+            background-color: color('gray','dark');
+
+            &.hide {
+                display: none;
+            }
+
+            .info {
+
+                img {
+                    display: block;
+                    margin: auto;
+                }
+
+                &__text {
+                    font-style: 300;
+                    font-size: 1.2em;
+                    color: #ABA899;
+                    text-align: center;
+                }
+
+                &.hide {
+                    display: none;
+                }
+            }
+        }
+
+        &__rel {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(-100%);
+            transition: transform 1s 300ms $ease, opacity $time $ease;
+
+            &--proj_1,
+            &--proj_2,
+            &--proj_3,
+            &--proj_4,
+            &--proj_5,
+            &--proj_6,
+            &--proj_7,
+            &--proj_8,
+            &--proj_9,
+            &--proj_10,
+            &--proj_11,
+            &--proj_12, {
+
+                &.show-desc {
+                    opacity: 1; overflow: auto;
+                    transform: translateX(0);
+                    z-index: 999;
+                    transition: transform 1s 300ms $ease, opacity $time $ease;
+                }
+
+            }
+
+            .descriptif {
+                position: absolute;
+                width: 100%;
+                top: 0; left: 0;
+                padding: 30px 0 0 0;
+                /*opacity: 0;
+                transform: translateX(-100%);
+                transition: transform $time $ease, opacity $time $ease;*/
+
+                .keyword {
+                    display: block;
+                    margin-left: 40px;
+                }
+
+                &__img {
+                    display: block;
+                    max-width: 100%;
+                    margin: 50px auto 50px auto;
+
+                    img {
+                        max-width: 100%;
+                    }
+                }
+
+                &__left {
+                    padding-left: 50px;
+                    margin-bottom: 10px;
+                }
+
+                &__keyword {
+                    display: inline-block;
+                    font-style: italic;
+                    font-size: 1.2em;
+                    color: color('primary');
+                    margin-left: 10px;
+
+                    &--1 {
+                        margin-left: 50px;
+                    }
+                }
+
+                &__text {
+                    position: relative;
+                    left: 0;
+                    width: 100%;
+                    padding: 30px;
+                    background-color: color('gray','light');
+                    border-top: solid 4px color('primary');
+
+                    &--clip {
+                        border-top: solid 4px color('secondary');
+                    }
+
+                    p {
+                        margin: 10px 0;
+                        color: color('background');
+                        font-weight: 100;
+                        font-size: 1.2em;
+                        text-align: center;
+
+                        &.slogan,
+                        a {
+                            font-size: 1.4em;
+                            font-weight: 700;
+                            text-align: center;
+                            margin-top: 35px;
+                            color: color('background');
+                            text-decoration: none;
+                        }
+
+                        &.commerciale {
+                            font-style: italic;
+                            font-size: 1em;
+                            margin-top: 25px;
+                            padding-top: 15px;
+                            border-top: solid 1px color('background');
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+}
+
+
+
+.owl-carousel .owl-nav .owl-next {
+  position: absolute;
+  bottom: 15px; right: 15px;
+  background: url('../img/next.png') no-repeat center;
+  width: 82px; height: 82px;
+  z-index: 999999;
+}
+
+@media screen and (max-width: 1400px) {
+
+    .gallery {
+
+        &__mosa {
+
+            &__inner {
+
+                &--dark {
+
+                    .gallery__mosa__inner__item {
+                        background-color: color('gray','light');
+                    }
+                }
+
+                &--light {
+
+                    .gallery__mosa__inner__item {
+                        background-color: color('background');
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 1080px) {
+
+    .gallery {
+        height: calc(100% - 50px);
+        top: 50px;
+
+        &__visu {
+
+            &__info {
+                display: none;
+            }
+            &__rel {
+                display: none;
+
+                .descriptif {
+
+                    &__left {
+                        width: 80%;
+                        padding-left: 25px;
+                        font-size: 35px;
+                    }
+                    .keyword {
+
+                        margin-left: 20px;
+                    }
+                }
+
+                &--proj_1,
+                &--proj_2,
+                &--proj_3,
+                &--proj_4,
+                &--proj_5,
+                &--proj_6,
+                &--proj_7,
+                &--proj_8,
+                &--proj_9,
+                &--proj_10,
+                &--proj_11,
+                &--proj_12, {
+
+                    &.show-desc {
+                        display: block;
+                    }
+
+                }
+            }
+        }
+
+        &__mosa {
+
+            &--mobile {
+                @include transition();
+
+                &.hide {
+                    /*opacity: 0;*/
+                    transform: translateX(-100%);
+                    @include transition();
+                }
+            }
+        }
+
+        &__visu {
+            left: 0;
+            width: 100%;
+            background-color: color('background');
+            opacity: 1;
+            z-index: 1;
+
+            &__rel {
+                transform: translateX(0);
+            }
+
+            .close-big {
+                display: block;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    .gallery {
+
+        &__mosa {
+
+            &__inner {
+
+                &__item {
+                    img {
+                        &.hide {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

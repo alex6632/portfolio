@@ -1,0 +1,48 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block _header %}
+    {{ include('Admin/partials/header.html.twig') }}
+{% endblock %}
+
+{% block _page_content %}
+
+    <h1>Gestion des tags</h1>
+
+    <section class="section">
+        <div class="add-form">
+            <h2>Ajouter un tag</h2>
+            {{ form_start(TagsAdd) }}
+            {{ form_end(TagsAdd) }}
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Liste des tags existants</h2>
+        {% if TagsList %}
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th class="action">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tag in TagsList %}
+                    <tr>
+                        <td>{{ tag.name }}</td>
+                        <td>
+                            <a href="{{ path('tag_delete', { 'id' : tag.id } )}}">Supprimer</a>
+                            <a href="{{ path('tag_edit', { 'id' : tag.id } )}}">Editer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            Aucun tag pour le moment
+        {% endif %}
+    </section>
+
+
+
+{% endblock %}

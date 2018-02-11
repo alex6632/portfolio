@@ -1,0 +1,13 @@
+<div class="project" id="projet{{ i }}">
+    <div class="project__inner">
+
+        <div class="cancel"><span class="icon-cancel"></span>Fermer</div>
+        <p class="project__desc">
+            {{ project.description|nl2br }}
+        </p>
+
+        {% if not project.url is empty %}
+            <a href="{{ project.url }}" target="_blank" class="project__link">Voir le site</a>
+        {% endif %}
+    </div>
+</div>

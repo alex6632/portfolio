@@ -1,0 +1,19 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block _header %}
+    {{ include('Admin/partials/header.html.twig') }}
+{% endblock %}
+
+{% block _page_content %}
+
+    <h1>Gestion des projets</h1>
+
+    <section class="section">
+        <div class="add-form">
+            <h2>Editer la formation : {{ Formation.name }}</h2>
+            {{ form_start(FormationEdit) }}
+            {{ form_end(FormationEdit) }}
+        </div>
+    </section>
+
+{% endblock %}

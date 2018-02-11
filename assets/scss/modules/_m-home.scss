@@ -1,0 +1,461 @@
+/*
+All HOME styles here...
+|
+|__ home.scss
+*/
+
+.puces {
+  position: fixed;
+  width: 20px;
+  height: 100px;
+  left: 6px;
+  top: 50%;
+  margin-top: -50px;
+  z-index: 1;
+
+  @include respond-to('medium') {
+    left: 20px;
+  }
+
+  &__item {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: solid 1px color('primary');
+    margin: 10px 0;
+    cursor: pointer;
+    @include transition();
+
+    &.active {
+      background-color: color('primary');
+      border: solid 1px color('primary');
+      @include transition();
+    }
+
+    @include respond-to('large') {
+      &:hover {
+        background-color: color('primary');
+        border: solid 1px color('primary');
+        @include transition();
+      }
+    }
+  }
+}
+
+.indic {
+  display: none;
+  margin-top: -30px;
+  left: 60px;
+  width: 200px;
+  height: 100px;
+  padding: 15px;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: color('background');
+  opacity: 1;
+  z-index: 9;
+  box-shadow: 1px 1px 5px 0px color('background');
+  @include center-v(fixed);
+  @include transition();
+
+  -webkit-animation: myAnim 0.5s $ease 20 alternate;
+  animation: myAnim 0.5s $ease 20 alternate;
+
+  @include respond-to('medium') {
+    display: block;
+  }
+
+  &:before {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    margin-top: -10px;
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(color('background', 'invert'), .6) transparent transparent;
+  }
+
+  &.hide {
+    opacity: 0;
+    left: -300px;
+    @include transition();
+  }
+}
+
+@-webkit-keyframes myAnim {
+  from {
+    left: 60px;
+  }
+  to {
+    left: 70px;
+  }
+}
+
+@keyframes myAnim {
+  from {
+    left: 60px;
+  }
+  to {
+    left: 70px;
+  }
+}
+
+.section {
+  width: 100%;
+  margin: auto;
+  //height: 100%;
+
+  &--1 {
+    display: flex;
+    height: calc(100vh - 50px);
+
+    @include respond-to('large') {
+      min-height: calc(100vh - 110px);
+      padding-bottom: 0;
+    }
+
+    .section__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+
+  &--2 {
+    display: flex;
+    background: url('../images/accueil/bg-ftv.jpg') no-repeat center;
+    background-size: cover;
+    height: calc(100vh - 50px);
+
+    @include respond-to('large') {
+      height: 100vh;
+    }
+
+    .section__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+
+    @include respond-to('large') {
+      width: 1080px;
+      height: 100%;
+      margin: auto;
+    }
+
+    &--bg {
+      height: calc(100vh - 50px);
+
+      @include respond-to('large') {
+        height: 500px;
+      }
+    }
+
+    &__maquettes {
+      display: none;
+
+      @include respond-to('medium') {
+        position: absolute;
+        display: block;
+        width: 40%;
+        top: 4%;
+        max-height: 95%;
+        overflow: hidden;
+        margin-left: 0px;
+        left: 20%;
+      }
+
+      @include respond-to('large') {
+        @include center-h(absolute);
+      }
+
+      img {
+        width: 31%;
+        margin: 0 1% 0 0;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      &--1,
+      &--2,
+      &--3 {
+        opacity: 0;
+
+        &.appear {
+          opacity: 0.9;
+          transition: opacity $ease 0.5s;
+        }
+      }
+      &--1 {
+        &.appear {
+          transition: opacity 0.5s $ease;
+        }
+      }
+      &--2 {
+        &.appear {
+          transition: opacity 0.5s 0.2s $ease;
+        }
+      }
+      &--3 {
+        &.appear {
+          transition: opacity 0.5s 0.4s $ease;
+        }
+      }
+    }
+
+    &__img {
+      position: absolute;
+
+      &--1 {
+        display: block;
+        position: static;
+        opacity: 0;
+        max-height: calc(100% - 200px);
+        width: auto;
+        margin: auto;
+
+        @include respond-to('medium') {
+          position: absolute;
+          bottom: initial;
+          top: 50px;
+        }
+
+        @include respond-to('large') {
+          top: 0;
+          right: -15%;
+          max-height: 100%;
+          max-width: 50%;
+        }
+
+        @include respond-to('desktop') {
+          right: -25%;
+        }
+
+        &.appear {
+          opacity: 1;
+          right: 0;
+          transition: opacity $time2 $ease 0.5s, right $time2 $ease 0.5s;
+
+          @include respond-to('medium') {
+            right: 0;
+          }
+          @include respond-to('large') {
+            right: -2%;
+          }
+          @include respond-to('desktop') {
+            right: -8%;
+          }
+          @include respond-to('huge') {
+            right: -15%;
+          }
+        }
+      }
+
+      &--2 {
+        opacity: 0;
+        right: -50%;
+
+        &.appear {
+          opacity: 1;
+          right: -10%;
+          transition: opacity $time2 $ease 0.5s, right $time2 $ease 0.5s;
+        }
+      }
+
+      &--3 {
+        position: relative;
+        opacity: 0;
+        top: -10px;
+        left: -15%;
+        max-height: 100%;
+        max-width: 80%;
+        margin-right: -5%;
+        @include transition();
+
+        @include respond-to('medium') {
+          max-width: 50%;
+          margin-right: 0;
+          left: auto;
+          right: -5%;
+          @include center-v(absolute);
+        }
+
+        &.appear {
+          opacity: 1;
+          left: 5%;
+          @include transition();
+
+          @include respond-to('medium') {
+            right: 5%;
+            left: auto;
+          }
+          @include respond-to('desktop') {
+            right: 0;
+          }
+          @include respond-to('huge') {
+            right: -10%;
+          }
+        }
+      }
+    }
+
+    &__legende {
+      display: block;
+      position: absolute;
+      bottom: 50px;
+
+      @include respond-to('large') {
+        width: 400px;
+      }
+
+      &--inte,
+      &--info {
+        opacity: 0;
+
+        &.appear {
+          opacity: 1;
+          @include transition();
+        }
+      }
+
+      &--inte {
+        position: static;
+        margin: 50px 0 0 12%;
+
+        @include respond-to('medium') {
+          position: absolute;
+          left: 8%;
+          top: initial;
+          bottom: 0;
+          margin: 0;
+          padding: 0;
+          padding-top: 30px;
+        }
+        @include respond-to('large') {
+          bottom: 10%;
+        }
+        @include respond-to('desktop') {
+          left: -5%;
+        }
+      }
+
+      &--info {
+        position: static;
+        margin: 0 12% 0 0;
+
+        @include respond-to('medium') {
+          position: absolute;
+          left: 8%;
+          top: initial;
+          bottom: 10%;
+          margin: 0;
+          padding: 0;
+          padding-top: 30px;
+        }
+        @include respond-to('large') {
+          left: 5%;
+        }
+        @include respond-to('desktop') {
+          left: 5%;
+        }
+        @include respond-to('huge') {
+          left: -5%;
+        }
+      }
+
+      &--bg {
+        bottom: initial;
+        top: 40px;
+        right: 0;
+        opacity: 0;
+        background-color: rgba(color('background'), .7);
+        padding: 15px 35px 35px 35px;
+
+        @include respond-to('large') {
+          padding: 35px;
+          right: 80px;
+        }
+
+        &.appear {
+          opacity: 1;
+          @include transition();
+        }
+      }
+
+      &__title {
+        text-transform: uppercase;
+        font-size: 50px;
+        color: color('primary');
+
+        @include respond-to('large') {
+          font-size: 70px;
+        }
+
+        &--right {
+          text-align: right;
+        }
+      }
+
+      &__desc {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 100;
+        //text-shadow: 1px 1px 2px rgba(color('background'), 1);
+
+        @include respond-to('large') {
+          font-size: 30px;
+        }
+
+        &--invert {
+          color: color('foreground', 'invert');
+        }
+        &--right {
+          text-align: right;
+        }
+
+      }
+
+      &--left {
+        @include respond-to('medium') {
+          height: 170px;
+          bottom: auto;
+          @include center-v(absolute);
+        }
+      }
+    }
+  }
+
+  &--bg {
+    height: calc(100% - 50px);
+    overflow: hidden;
+
+    @include respond-to('large') {
+      height: 550px;
+    }
+
+    .img {
+      height: 100%;
+      background: url('../images/accueil/jsi-mobile.jpg') no-repeat center;
+      -webkit-background-size: cover;
+      background-size: cover;
+
+      @include respond-to('large') {
+        height: 550px;
+        background: url('../images/accueil/jsi.jpg') no-repeat center;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <meta name="description" content="Bonjour, je suis Alexandre Simonin, un développeur web symfony. Découvrez mes derniers projets et téléchargez mon CV"/>
+    <meta name="keywords" content="Alexandre Simonin, Alexandre, Simonin, Symfony, React, React Native, Portfolio, web, design, webdesign, pao, infographie, infographiste, CV, integrateur"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+
+    <title>{% block title %}Alexandre Simonin | Développeur Symfony Paris{% endblock %}</title>
+    {#<link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}" />#}
+
+    <!-- MUST HAVE CSS -->
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/styles/main.css') }}" >
+    {% endblock %}
+    <!-- END MUST HAVE CSS -->
+</head>
+
+<body>
+    {% block body %}{% endblock %}
+
+    <!-- MUST HAVE JAVASCRIPT -->
+    {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {#<script src="{{ asset('js/externals/jquery-3.3.1.min.js') }}" ></script>#}
+        <script src="{{ asset('build/scripts/bundle.js') }}" ></script>
+    {% endblock %}
+    <!-- END MUST HAVE JAVASCRIPT -->
+</body>
+</html>
