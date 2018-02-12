@@ -151,7 +151,34 @@ var app = {
       $(this).parents('.project').prev().removeClass('active');
       $(this).parents('.project').removeClass('open');
     });
-  }
+  },
+  ajaxSendMail: function () {
+    $('.main-footer__inner__2 form, .footer-mobile__2 form').submit(function(e) {
+      e.preventDefault();
+      $('.main-footer__inner__2 form button, .footer-mobile__2 form button').prop('disabled', true );
+      var jsUrlSendMail = $('.jsUrlSendMail').val();
+      var alert = $('.block-alert.mail');
+
+      console.log('URL : '+jsUrlSendMail);
+
+      $.ajax({
+        url: jsUrlSendMail,
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+          if(response.type == 'success') {
+            $('.main-footer__inner__2 form button').prop('disabled', false);
+            alert.addClass('show');
+            alert.append('<div class="alert alert--success" role="alert">' + response.message + '</div>');
+          }
+        },
+        error: function(response) {
+          alert.removeClass('show');
+          alert.append('<div class="alert alert--error" role="alert">' + response.message + '</div>');
+        }
+      })
+    });
+  },
 }; // end of app
 
 $(document).ready(function () {
@@ -186,4 +213,5 @@ $(document).ready(function () {
   app.openModal('jsModalCreateProject');
   app.openProject();
   app.closeProject();
+  app.ajaxSendMail();
 });

@@ -9,6 +9,7 @@ use Swift_Mailer;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PortfolioController extends Controller
 {
@@ -24,14 +25,37 @@ class PortfolioController extends Controller
      */
     public function contactFormAction(Request $request, Swift_Mailer $mailer) {
 
-        //$contactForm = $this->createForm(ContactType::class);
-        $contactForm = $this->createForm(ContactType::class, null, array(
-            'action' => $this->generateUrl('contact_form'),
-            'method' => 'POST',
-        ));
+        $contactForm = $this->createForm(ContactType::class, null, array());
 
+//        $contactForm->handleRequest($request);
         $contactForm->handleRequest($request);
-        $session = $this->get('session');
+
+        /*
+        if($request->isXmlHttpRequest()) {
+            $form = $request->get('ville');
+            // dans var/logs/dev.log
+            //$logger->error('FORM name : '.$form['name']);
+
+            $firstName = $form->get('firstName')->getData();
+            $lastName = $form->get('lastName')->getData();
+            $email = $form->get('email')->getData();
+            $message = $form->get('message')->getData();
+
+            if(empty($firstName) || empty($lastName) || empty($email) || empty($message) ) {
+                $msg = array(
+                    'type' => 'error',
+                    'message'  => 'Merci de remplir tous les champs ;-)'
+                );
+            } else {
+
+                $msg = array(
+                    'type'       => 'success',
+                    'message'        => 'Merci ! Le message a bien été envoyé !',
+                );
+            }
+            return new JsonResponse($msg);
+        }
+        */
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 
@@ -39,10 +63,10 @@ class PortfolioController extends Controller
 
             $message = (new \Swift_Message('Message portfolio'))
                 ->setFrom($data['email'])
-                ->setTo('a.simonin69@gmail.com')
+                ->setTo('asimonin.digital@gmail.com')
                 ->setBody(
                     $this->renderView(
-                        'Portfolio/partials/registration.html.twig',
+                        'Portfolio/partials/email.html.twig',
                         array(
                             'nom' => $data['lastName'],
                             'prenom' => $data['firstName'],
@@ -54,14 +78,20 @@ class PortfolioController extends Controller
                 );
             $mailer->send($message);
 
-            $session->getFlashBag()->add(
+            /*$session->getFlashBag()->add(
                 'success',
                 'Merci ! Le message a bien été envoyé !'
+            );*/
+
+            $message = array(
+                'type'       => 'success',
+                'message'        => 'Merci ! Le message a bien été envoyé !',
             );
-
-            return $this->redirectToRoute('accueil');
-
+            return new JsonResponse($message, 200);
+            //return $this->redirectToRoute('accueil');
         }
+
+
 
         return $this->render('Portfolio/partials/contactForm.html.twig', array(
             'ContactForm'  => $contactForm->createView()

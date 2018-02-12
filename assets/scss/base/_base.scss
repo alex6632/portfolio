@@ -80,6 +80,36 @@ body {
 }
 
 .block-alert {
+	&.mail {
+		display: none;
+
+		&.show {
+			display: block;
+		}
+
+		.alert {
+			&--success {
+				position: absolute;
+				width: calc(100% - 140px);
+				bottom: 12px;
+				right: 12px;
+				left: auto;
+				top: auto;
+				transform: translate(0);
+
+				@include respond-to('medium') {
+					width: calc(100% - 190px);
+					bottom: -25px;
+					right: 0;
+				}
+				@include respond-to('large') {
+					width: calc(100% - 130px);
+					bottom: -25px;
+					right: 0;
+				}
+			}
+		}
+	}
 	.alert {
 		position: absolute;
 		top: 45px;

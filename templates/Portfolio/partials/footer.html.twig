@@ -14,22 +14,14 @@
         </ul>
     </div>
     <div class="footer-mobile__2">
-    <span class="
-        main-footer__inner__title
-        main-footer__inner__title--black">
-      Laissez moi un message
-    </span>
-        {#<form class="form" action="" method="post" data-parsley-validate>#}
-            {#<div class="form__left">#}
-                {#<input type="text" name="nom" placeholder="Votre nom" class="form__left__input" required data-parsley-errors-messages-disabled="parsley-error">#}
-                {#<input type="text" name="prenom" placeholder="Votre prénom" class="form__left__input" required data-parsley-errors-messages-disabled="parsley-error">#}
-                {#<input type="email" name="mail" placeholder="Votre mail" class="form__left__input" required data-parsley-type="email" data-parsley-errors-messages-disabled="parsley-error">#}
-            {#</div>#}
-            {#<div class="form__right">#}
-                {#<textarea name="message" rows="1" cols="1" class="form__right__textarea" placeholder="Entrez votre message ici" required data-parsley-minlength="10" data-parsley-errors-messages-disabled="parsley-error"></textarea>#}
-            {#</div>#}
-            {#<input type="submit" name="envoyer-formulaire" value="Envoyer" class="btn">#}
-        {#</form>#}
+        <span class="
+            main-footer__inner__title
+            main-footer__inner__title--black">
+          Laissez moi un message
+        </span>
+        <div class="block-alert mail"></div>
+        <input type="hidden" value="{{ path("contact_form") }}" class="jsUrlSendMail">
+        {{ render(controller('App\\Controller\\PortfolioController:contactFormAction')) }}
     </div>
 </div>
 
@@ -58,6 +50,8 @@
                     main-footer__inner__title--black">
                 Laissez moi un message
             </span>
+            <div class="block-alert mail"></div>
+            <input type="hidden" value="{{ path("contact_form") }}" class="jsUrlSendMail">
             {{ render(controller('App\\Controller\\PortfolioController:contactFormAction')) }}
         </div>
     </div>
