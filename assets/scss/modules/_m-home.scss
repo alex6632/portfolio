@@ -419,6 +419,14 @@ All HOME styles here...
           font-size: 30px;
         }
 
+        span {
+          &.smaller {
+            color: color('primary');
+            font-size: 22px;
+            font-weight: 700;
+          }
+        }
+
         &--invert {
           color: color('foreground', 'invert');
         }
