@@ -26,6 +26,28 @@
 		color: color('foreground','invert');
 		@include transition();
 	}
+
+	&:disabled {
+		background: rgba(color('background', 'invert'),.5);
+		cursor: not-allowed;
+
+		&::after {
+			position: absolute;
+			display: block;
+			content: "";
+			width: 20px;
+			height: 20px;
+			right: -30px;
+			top: 8px;
+			background: url('../images/ajax-loader.gif') no-repeat;
+		}
+
+		&:hover {
+			border: solid 2px color('gray','light');
+			background: rgba(color('background', 'invert'),.5);
+			color: color('gray','light');
+		}
+	}
 }
 
 .form {
