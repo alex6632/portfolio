@@ -9,10 +9,12 @@ use App\Entity\Tag;
 use App\Form\FormationType;
 use App\Form\ProjectType;
 use App\Form\TagType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @Route("/admin")
@@ -50,15 +52,12 @@ class AdminController extends Controller
     /**
      * @Route("/tag/add", name="tag_add")
      */
-    public function AddTagAction(Request $request) {
-
-        $em = $this->getDoctrine()->getEntityManager();
+    public function AddTagAction(Request $request, Session $session, EntityManagerInterface $em) {
         $tag = new Tag();
 
         $tagForm = $this->createForm(TagType::class, $tag);
         $tagForm->add('Ajouter', SubmitType::class);
         $tagForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($tagForm->isSubmitted() && $tagForm->isValid()) {
             $em->persist($tag);
@@ -84,14 +83,12 @@ class AdminController extends Controller
     /**
      * @Route("/tag/delete/{id}", name="tag_delete")
      */
-    public function DeleteTagAction(Request $request, $id) {
+    public function DeleteTagAction(Request $request, Session $session, EntityManagerInterface $em, $id) {
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($id);
+        $tag = $em->getRepository(Tag::class)->find($id);
         $em->remove($tag);
         $em->flush();
 
-        $session = $this->get('session');
         $session->getFlashBag()->add(
             'success',
             'Le tag a bien été supprimé !'
@@ -103,7 +100,7 @@ class AdminController extends Controller
     /**
      * @Route("/tag/edit/{id}", name="tag_edit")
      */
-    public function EditTagAction(Request $request, $id) {
+    public function EditTagAction(Request $request, $id, Session $session) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $tag = $this->getDoctrine()->getRepository(Tag::class)->find($id);
@@ -111,7 +108,6 @@ class AdminController extends Controller
         $tagEditForm = $this->createForm(TagType::class, $tag);
         $tagEditForm->add('Editer', SubmitType::class);
         $tagEditForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($tagEditForm->isSubmitted() && $tagEditForm->isValid()) {
 
@@ -138,7 +134,7 @@ class AdminController extends Controller
     /**
      * @Route("/projet/add", name="projet_add")
      */
-    public function AddProjetAction(Request $request) {
+    public function AddProjetAction(Request $request, Session $session) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $project = new Projet();
@@ -146,7 +142,6 @@ class AdminController extends Controller
         $projectForm = $this->createForm(ProjectType::class, $project);
         $projectForm->add('Ajouter', SubmitType::class);
         $projectForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($projectForm->isSubmitted() && $projectForm->isValid()) {
             // Upload...
@@ -180,7 +175,7 @@ class AdminController extends Controller
     /**
      * @Route("/projet/delete/{id}", name="project_delete")
      */
-    public function DeleteProjectAction(Request $request, $id) {
+    public function DeleteProjectAction(Request $request, $id, Session $session) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $project = $this->getDoctrine()->getRepository(Projet::class)->find($id);
@@ -192,7 +187,6 @@ class AdminController extends Controller
         $em->remove($project);
         $em->flush();
 
-        $session = $this->get('session');
         $session->getFlashBag()->add(
             'success',
             'Le projet a bien été supprimé !'
@@ -204,7 +198,7 @@ class AdminController extends Controller
     /**
      * @Route("/projet/edit/{id}", name="project_edit")
      */
-    public function EditProjectAction(Request $request, $id) {
+    public function EditProjectAction(Request $request, Session $session, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $project = $this->getDoctrine()->getRepository(Projet::class)->find($id);
@@ -215,7 +209,6 @@ class AdminController extends Controller
         $projectEditForm = $this->createForm(ProjectType::class, $project);
         $projectEditForm->add('Editer', SubmitType::class);
         $projectEditForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($projectEditForm->isSubmitted() && $projectEditForm->isValid()) {
 
@@ -252,7 +245,7 @@ class AdminController extends Controller
     /**
      * @Route("/formation/add", name="formation_add")
      */
-    public function AddFormationAction(Request $request) {
+    public function AddFormationAction(Request $request, Session $session) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $formation = new Formation();
@@ -260,7 +253,6 @@ class AdminController extends Controller
         $formationAddForm = $this->createForm(FormationType::class, $formation);
         $formationAddForm->add('Ajouter', SubmitType::class);
         $formationAddForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($formationAddForm->isSubmitted() && $formationAddForm->isValid()) {
             // Upload...
@@ -294,7 +286,7 @@ class AdminController extends Controller
     /**
      * @Route("/formation/delete/{id}", name="formation_delete")
      */
-    public function DeleteFormationAction(Request $request, $id) {
+    public function DeleteFormationAction(Request $request, Session $session, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
@@ -306,7 +298,6 @@ class AdminController extends Controller
         $em->remove($formation);
         $em->flush();
 
-        $session = $this->get('session');
         $session->getFlashBag()->add(
             'success',
             'La formation a bien été supprimée !'
@@ -318,7 +309,7 @@ class AdminController extends Controller
     /**
      * @Route("/formation/edit/{id}", name="formation_edit")
      */
-    public function EditFormationAction(Request $request, $id)
+    public function EditFormationAction(Request $request, Session $session, $id)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
@@ -329,7 +320,6 @@ class AdminController extends Controller
         $formationEditForm = $this->createForm(FormationType::class, $formation);
         $formationEditForm->add('Editer', SubmitType::class);
         $formationEditForm->handleRequest($request);
-        $session = $this->get('session');
 
         if($formationEditForm->isSubmitted() && $formationEditForm->isValid()) {
 
@@ -368,6 +358,8 @@ class AdminController extends Controller
             ->getRepository(Email::class)
             ->findAll();
 
+        // TODO : afficher liste triée par date DESC !
+
         return $this->render('Admin/email/list.html.twig', array(
             'EmailList' => $emailList
         ));
@@ -390,14 +382,13 @@ class AdminController extends Controller
     /**
      * @Route("/email/delete/{id}", name="email_delete")
      */
-    public function EmailDelete(Request $request, $id) {
+    public function EmailDelete(Request $request, Session $session, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $email = $this->getDoctrine()->getRepository(Email::class)->find($id);
         $em->remove($email);
         $em->flush();
 
-        $session = $this->get('session');
         $session->getFlashBag()->add(
             'success',
             'Le message a bien été supprimé !'

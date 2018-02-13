@@ -1,18 +1,25 @@
 <div class="admin-toolbar trigger">
     <ul class="admin-toolbar__list">
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link right"
-                                                 href="/logout">Deconnexion</a></li>
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
-                                                 href="/admin/dashboard">Dashoard</a></li>
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
-                                                 href="/admin/formation/add">Formations</a></li>
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
-                                                 href="/admin/projet/add">Projets</a></li>
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
-                                                 href="/admin/tag/add">Tags</a></li>
-        <li class="admin-toolbar__list__item"><a class="admin-toolbar__list__item__link"
-                                                 href="/admin/email">Messagerie</a></li>
-        <li class="admin-toolbar__list__item"><span
-                    class="admin-toolbar__list__item__link">Route actuelle : {{ actualRoute }}</span></li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link right" href="/logout">Deconnexion</a>
+        </li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link" href="/admin/dashboard">Dashoard</a>
+        </li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link" href="/admin/formation/add">Formations</a>
+        </li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link" href="/admin/projet/add">Projets</a>
+        </li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link" href="/admin/tag/add">Tags</a></li>
+        <li class="admin-toolbar__list__item">
+            <a class="admin-toolbar__list__item__link" href="/admin/email">Messagerie</a>
+            {# TODO : Ajouter pastille si il y a des messages non lus #}
+        </li>
+        <li class="admin-toolbar__list__item">
+            <span class="admin-toolbar__list__item__link">Route actuelle : {{ actualRoute }}</span>
+        </li>
     </ul>
 </div>

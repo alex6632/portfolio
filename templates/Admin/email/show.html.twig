@@ -10,15 +10,15 @@
 
     <section class="section">
 
-        <a href="{{ path('email_delete', { 'id' : Email.id } )}}">Supprimer ce message</a>
-        <h2>Message de : {{ Email.firstName }} {{ Email.lastName }}</h2>
-
-        <div>{{ Email.firstName }} {{ Email.lastName }}</div>
-        <div>le {{ Email.date|date("d/m/Y") }} à {{ Email.date|date("G:i:s") }}</div>
-        <div>{{ Email.email }}</div>
-        <div>{{ Email.message }}</div>
+        <a href="{{ path('email_delete', { 'id' : Email.id } )}}" class="delete">Supprimer ce message</a>
+        <div class="message-show">
+            <h2>Message de : {{ Email.firstName }} {{ Email.lastName }}</h2>
+            <div>le {{ Email.date|date("d/m/Y") }} à {{ Email.date|date("G:i:s") }}</div>
+            <div>{{ Email.email }}</div>
+            <div class="message-show__content">{{ Email.message }}</div>
+        </div>
     </section>
 
-    <a href="{{ path('email_list')}}">Retour à la liste des messages</a>
+    <a href="{{ path('email_list')}}" class="back">Retour à la liste des messages</a>
 
 {% endblock %}
