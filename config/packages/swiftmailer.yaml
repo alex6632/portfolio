@@ -1,3 +1,18 @@
 swiftmailer:
-    url: '%env(MAILER_URL)%'
-    spool: { type: 'memory' }
+    transport: gmail
+    username: asimonin.digital@gmail.com
+    password: '%alexandre0;'
+    host: smtp.gmail.com
+    port: false
+    encryption: ~
+    auth_mode: ~
+    spool:
+        type: file
+        path: '%kernel.cache_dir%/swiftmailer/spool'
+    sender_address: ~
+    antiflood:
+        threshold: 99
+        sleep: 0
+    delivery_addresses: []
+    disable_delivery: ~
+    logging: '%kernel.debug%'
