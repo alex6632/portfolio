@@ -26,8 +26,7 @@ class PortfolioController extends Controller
     public function contactFormAction(Request $request, Swift_Mailer $mailer) {
 
         $contactForm = $this->createForm(ContactType::class, null, array());
-
-//        $contactForm->handleRequest($request);
+        
         $contactForm->handleRequest($request);
 
         /*
