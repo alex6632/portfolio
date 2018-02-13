@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Email;
 use App\Entity\Formation;
 use App\Entity\Projet;
 use App\Entity\Tag;
@@ -359,5 +360,49 @@ class AdminController extends Controller
     }
 
 
+    /**
+     * @Route("/email", name="email_list")
+     */
+    public function EmailList() {
+        $emailList = $this->getDoctrine()
+            ->getRepository(Email::class)
+            ->findAll();
+
+        return $this->render('Admin/email/list.html.twig', array(
+            'EmailList' => $emailList
+        ));
+    }
+
+
+    /**
+     * @Route("/email/{id}", name="email_show")
+     */
+    public function Email($id) {
+        $email = $this->getDoctrine()
+            ->getRepository(Email::class)
+            ->find($id);
+
+        return $this->render('Admin/email/show.html.twig', array(
+            'Email' => $email
+        ));
+    }
+
+    /**
+     * @Route("/email/delete/{id}", name="email_delete")
+     */
+    public function EmailDelete(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $email = $this->getDoctrine()->getRepository(Email::class)->find($id);
+        $em->remove($email);
+        $em->flush();
+
+        $session = $this->get('session');
+        $session->getFlashBag()->add(
+            'success',
+            'Le message a bien été supprimé !'
+        );
+        return $this->redirectToRoute('email_list');
+    }
 
 }
