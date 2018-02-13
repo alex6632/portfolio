@@ -26,41 +26,11 @@ class PortfolioController extends Controller
     public function contactFormAction(Request $request, Swift_Mailer $mailer) {
 
         $contactForm = $this->createForm(ContactType::class, null, array());
-
-//        $contactForm->handleRequest($request);
         $contactForm->handleRequest($request);
-
-        /*
-        if($request->isXmlHttpRequest()) {
-            $form = $request->get('ville');
-            // dans var/logs/dev.log
-            //$logger->error('FORM name : '.$form['name']);
-
-            $firstName = $form->get('firstName')->getData();
-            $lastName = $form->get('lastName')->getData();
-            $email = $form->get('email')->getData();
-            $message = $form->get('message')->getData();
-
-            if(empty($firstName) || empty($lastName) || empty($email) || empty($message) ) {
-                $msg = array(
-                    'type' => 'error',
-                    'message'  => 'Merci de remplir tous les champs ;-)'
-                );
-            } else {
-
-                $msg = array(
-                    'type'       => 'success',
-                    'message'        => 'Merci ! Le message a bien été envoyé !',
-                );
-            }
-            return new JsonResponse($msg);
-        }
-        */
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 
             $data = $contactForm->getData();
-
             $message = (new \Swift_Message('Message portfolio'))
                 ->setFrom($data['email'])
                 ->setTo('asimonin.digital@gmail.com')
@@ -78,20 +48,12 @@ class PortfolioController extends Controller
                 );
             $mailer->send($message);
 
-            /*$session->getFlashBag()->add(
-                'success',
-                'Merci ! Le message a bien été envoyé !'
-            );*/
-
             $message = array(
                 'type'       => 'success',
                 'message'        => 'Merci ! Le message a bien été envoyé !',
             );
             return new JsonResponse($message, 200);
-            //return $this->redirectToRoute('accueil');
         }
-
-
 
         return $this->render('Portfolio/partials/contactForm.html.twig', array(
             'ContactForm'  => $contactForm->createView()

@@ -9,6 +9,7 @@
 /public/bundles/
 /var/
 /vendor/
+/config/packages/swiftmailer.yaml
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
@@ -18,5 +19,4 @@
 
 ###> inte ###
 /node_modules/
-/public/build/
 ###< inte ###

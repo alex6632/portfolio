@@ -159,8 +159,6 @@ var app = {
       var jsUrlSendMail = $('.jsUrlSendMail').val();
       var alert = $('.block-alert.mail');
 
-      console.log('URL : '+jsUrlSendMail);
-
       $.ajax({
         url: jsUrlSendMail,
         type: 'POST',
@@ -173,12 +171,13 @@ var app = {
           }
         },
         error: function(response) {
+          $('.main-footer__inner__2 form button').prop('disabled', false);
           alert.removeClass('show');
           alert.append('<div class="alert alert--error" role="alert">' + response.message + '</div>');
         }
       })
     });
-  },
+  }
 }; // end of app
 
 $(document).ready(function () {
