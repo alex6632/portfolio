@@ -27,7 +27,6 @@ class PortfolioController extends Controller
 
         $contactForm = $this->createForm(ContactType::class, null, array());
 
-//        $contactForm->handleRequest($request);
         $contactForm->handleRequest($request);
 
         /*
