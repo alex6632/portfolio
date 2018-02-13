@@ -159,7 +159,7 @@ var app = {
       var jsUrlSendMail = $('.jsUrlSendMail').val();
       var alert = $('.block-alert.mail');
 
-      console.log('URL : '+jsUrlSendMail);
+      //console.log('URL : '+jsUrlSendMail);
 
       $.ajax({
         url: jsUrlSendMail,
