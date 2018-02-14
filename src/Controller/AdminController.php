@@ -24,24 +24,30 @@ class AdminController extends Controller
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
-        $formation_list = $this->getDoctrine()
+        $emailNoReadList = $em
+            ->getRepository(Email::class)
+            ->findEmailByView(0);
+        $countNoReadEmail = count($emailNoReadList);
+
+        $formation_list = $em
             ->getRepository(Formation::class)
             ->findAll();
 
-        $project_list = $this->getDoctrine()
+        $project_list = $em
             ->getRepository(Projet::class)
             ->findAll();
 
-        $tag_list = $this->getDoctrine()
+        $tag_list = $em
             ->getRepository(Tag::class)
             ->findAll();
 
         return $this->render('Admin/dashboard.html.twig', array(
-            'FormationList' => $formation_list,
-            'ProjectsList'  => $project_list,
-            'TagsList'      => $tag_list,
+            'FormationList'    => $formation_list,
+            'ProjectsList'     => $project_list,
+            'TagsList'         => $tag_list,
+            'NoReadEmailCount' => $countNoReadEmail
         ));
     }
 
@@ -353,15 +359,36 @@ class AdminController extends Controller
     /**
      * @Route("/email", name="email_list")
      */
-    public function EmailList() {
-        $emailList = $this->getDoctrine()
+    public function EmailList(EntityManagerInterface $em) {
+        $emailList = $em
             ->getRepository(Email::class)
             ->findAll();
+        $countAllEmail = count($emailList);
 
-        // TODO : afficher liste triée par date DESC !
+        $emailNoReadList = $em
+            ->getRepository(Email::class)
+            ->findEmailByView(0);
+        $countNoReadEmail = count($emailNoReadList);
 
         return $this->render('Admin/email/list.html.twig', array(
-            'EmailList' => $emailList
+            'EmailList' => $emailList,
+            'AllEmailCount' => $countAllEmail,
+            'NoReadEmailCount' => $countNoReadEmail
+        ));
+    }
+
+    /**
+     * @Route("/email/count", name="email_count")
+     */
+    public function EmailCount(EntityManagerInterface $em)
+    {
+        $emailNoReadList = $em
+            ->getRepository(Email::class)
+            ->findEmailByView(0);
+        $countNoReadEmail = count($emailNoReadList);
+
+        return $this->render('Admin/partials/header.html.twig', array(
+            'NoReadEmailCount' => $countNoReadEmail
         ));
     }
 
@@ -369,10 +396,15 @@ class AdminController extends Controller
     /**
      * @Route("/email/{id}", name="email_show")
      */
-    public function Email($id) {
-        $email = $this->getDoctrine()
+    public function Email(EntityManagerInterface $em, $id) {
+        $email = $em
             ->getRepository(Email::class)
             ->find($id);
+
+        // Update view to 1...
+        $email->setView(1);
+        $em->persist($email);
+        $em->flush();
 
         return $this->render('Admin/email/show.html.twig', array(
             'Email' => $email

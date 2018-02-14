@@ -9,7 +9,7 @@
     <h1>Gestion des messages</h1>
 
     <section class="section">
-        <h2>2 messages non lus sur 10 reçus</h2>
+        <h2>{{ NoReadEmailCount }} messages non lus sur {{ AllEmailCount }} reçus</h2>
         {% if EmailList %}
             {% for email in EmailList %}
                 <div class="message view{{ email.view }}">

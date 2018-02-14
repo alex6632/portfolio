@@ -8,6 +8,18 @@
 
     <h1>Dashboard</h1>
 
+    {% if NoReadEmailCount %}
+        <div class="messagerie">
+            <h2 class="ib">Messages en attente de lecture<span class="no-read-message">{{ NoReadEmailCount }}</span></h2>
+            {% if NoReadEmailCount == 1 %}
+                <a href="{{ path('email_list')}}" class="back">Voir le message</a>
+            {% else %}
+                <a href="{{ path('email_list')}}" class="back">Voir les messages</a>
+            {% endif %}
+        </div>
+        <hr>
+    {% endif %}
+
     <h2>Liste des formations</h2>
     {% if FormationList %}
         <table>

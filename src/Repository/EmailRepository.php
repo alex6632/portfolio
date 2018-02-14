@@ -13,6 +13,20 @@ class EmailRepository extends ServiceEntityRepository
         parent::__construct($registry, Email::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('date' => 'desc'));
+    }
+
+    public function findEmailByView($view)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.view = :value')->setParameter('value', $view)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findBySomething($value)
     {
