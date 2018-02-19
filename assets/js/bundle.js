@@ -152,6 +152,15 @@ var app = {
       $(this).parents('.project').removeClass('open');
     });
   },
+  closeProjectByOverlay: function () {
+    $('.overlay').on('click', function () {
+      var project = $('.project');
+      $('.overlay').removeClass('active');
+      $('body').removeClass('modal-active');
+      project.prev().removeClass('active');
+      project.removeClass('open');
+    });
+  },
   ajaxSendMail: function () {
     $('.main-footer__inner__2 form, .footer-mobile__2 form').submit(function(e) {
       e.preventDefault();
@@ -213,5 +222,6 @@ $(document).ready(function () {
   app.openModal('jsModalCreateProject');
   app.openProject();
   app.closeProject();
+  app.closeProjectByOverlay();
   app.ajaxSendMail();
 });
